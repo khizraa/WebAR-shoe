@@ -1,34 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
-    <title>MindAR 3D Model Test</title>
-    <link rel="icon" href="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f45f.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>MindAR 3D Model Test</title>
 
+  <!-- A-Frame and MindAR -->
+  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
+
+  <!-- Favicon -->
+  <link rel="icon" href="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f45f.svg">
+
+  <!-- Basic styling for full responsiveness -->
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      width: 100%;
+      height: 100%;
+      background: #000; /* fallback background */
+    }
+
+    a-scene {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    /* Optional: Loading message for slower networks */
+    #loadingMessage {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-family: sans-serif;
+      font-size: 1.2rem;
+      text-align: center;
+      z-index: 999;
+    }
+  </style>
 </head>
 <body>
-    <a-scene mindar-image="imageTargetSrc: targets.mind; debug: true;" 
-             color-space="sRGB"
-             renderer="colorManagement: true, physicallyCorrectLights"
-             vr-mode-ui="enabled: false"
-             device-orientation-permission-ui="enabled: false">
-        
-        <a-camera position="0 0 0"></a-camera>
+  <div id="loadingMessage">Loading AR Scene... 📷<br>Please allow camera access</div>
 
-        <a-assets>
-            <a-asset-item id="shoeModel" src="blue_nikes_2.glb"></a-asset-item>
-        </a-assets>
+  <a-scene 
+    mindar-image="imageTargetSrc: targets.mind; autoStart: true; debug: true;"
+    color-space="sRGB"
+    renderer="colorManagement: true, physicallyCorrectLights"
+    vr-mode-ui="enabled: false"
+    device-orientation-permission-ui="enabled: false"
+    embedded
+    loading-screen="enabled: false"
+    onloaded="document.getElementById('loadingMessage').style.display='none';"
+  >
+    <!-- Camera -->
+    <a-camera position="0 0 0"></a-camera>
 
-        <!-- Light added -->
-        <a-light type="directional" intensity="1" position="0 1 1"></a-light>
+    <!-- Assets -->
+    <a-assets>
+      <a-asset-item id="shoeModel" src="blue_nikes_2.glb"></a-asset-item>
+    </a-assets>
 
-        <!-- Image Target -->
-        <a-entity mindar-image-target="targetIndex: 0">
-            <a-gltf-model src="#shoeModel" position="0 0 0" scale="0.8 0.8 0.8" rotation="0 90 0"></a-gltf-model>
-        </a-entity>
-    </a-scene>
+    <!-- Lights -->
+    <a-light type="directional" intensity="1" position="0 1 1"></a-light>
+    <a-light type="ambient" intensity="0.5"></a-light>
+
+    <!-- Target & Model -->
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-gltf-model 
+        src="#shoeModel"
+        position="0 0 0"
+        scale="0.8 0.8 0.8"
+        rotation="0 90 0">
+      </a-gltf-model>
+    </a-entity>
+  </a-scene>
 </body>
 </html>
