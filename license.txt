@@ -1,0 +1,11 @@
+Model Information:
+* title:	Blue Nikes 2
+* source:	https://sketchfab.com/3d-models/blue-nikes-2-99eb03b45ed648f288148c64265b8caf
+* author:	DevCentral (https://sketchfab.com/Devcentral)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Blue Nikes 2" (https://sketchfab.com/3d-models/blue-nikes-2-99eb03b45ed648f288148c64265b8caf) by DevCentral (https://sketchfab.com/Devcentral) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
